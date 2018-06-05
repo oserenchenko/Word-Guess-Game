@@ -65,6 +65,18 @@ function blanksForCountry(word) {
   return blanks;
 }
 
+//function that runs both the chooseRandomWord and blanksForCountry functions and sets all of the variables over again
+function gameSetUp() {
+  //...run the chooseRandomWord function
+  var randomCountry = chooseRandomCountry();
+  //then run the blanksForCountry function
+  var blanks = blanksForCountry(randomCountry);
+  //the array that will hold all of the wrong guessed letters, guesses count
+  var lettersGuessed = [];
+  var guesses = 15;
+  return [randomCountry, blanks, lettersGuessed, guesses];
+}
+
 //the array that will hold all of the wrong guessed letters
 var lettersGuessed = [];
 var guesses = 15;
@@ -76,17 +88,6 @@ var blanks = blanksForCountry(randomCountry);
 
 // This function is run whenever the user presses a key - it saves the user pressed key and compares it to each letter in the country word that was chosen by the computer
 document.onkeyup = function () {
-  //function that runs both the chooseRandomWord and blanksForCountry functions and sets all of the variables over again
-  function gameSetUp() {
-    //...run the chooseRandomWord function
-    var randomCountry = chooseRandomCountry();
-    //then run the blanksForCountry function
-    var blanks = blanksForCountry(randomCountry);
-    //the array that will hold all of the wrong guessed letters, guesses count
-    var lettersGuessed = [];
-    var guesses = 15;
-    return [randomCountry, blanks, lettersGuessed, guesses];
-  }
   // Determines which key the player pressed - which guess they made - this becomes the playerGuess
   var playerGuess = String.fromCharCode(event.keyCode).toLowerCase();
   var countryNameBlanks = document.querySelector("#countryNameBlanks");
@@ -115,16 +116,15 @@ document.onkeyup = function () {
   if (blanks.join("") == randomCountry) {
     wins++;
     winsCount.innerHTML = wins;
-    var gameSetUp = gameSetUp();
-    randomCountry = gameSetUp[0];
+    var gameRefresh = gameSetUp();
+    randomCountry = gameRefresh[0];
     console.log(randomCountry);
-    blanks = gameSetUp[1];
-    lettersGuessed = gameSetUp[2];
-    guesses = gameSetUp[3];
+    blanks = gameRefresh[1];
+    lettersGuessed = gameRefresh[2];
+    guesses = gameRefresh[3];
     var lettersGuessedWrong = document.querySelector("#lettersGuessedWrong");
     lettersGuessedWrong.innerHTML = lettersGuessed.join("");
     var guessesRemaining = document.querySelector("#guessesRemaining");
     guessesRemaining.innerHTML = guesses;
   }
 }
-
