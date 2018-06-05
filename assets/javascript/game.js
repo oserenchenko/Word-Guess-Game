@@ -89,26 +89,54 @@ var blanks = spaceFunctionResults[1];
 
 //the array that will hold all of the wrong guessed letters
 lettersGuessed = [];
+var guesses = 15;
+var wins = 0;
 
 // This function is run whenever the user presses a key - it saves the user pressed key and compares it to each letter in the country word that was chosen by the computer
 document.onkeyup = function () {
-    // Determines which key the player pressed - which guess they made - this becomes the playerGuess
-    var playerGuess = String.fromCharCode(event.keyCode).toLowerCase();
-    console.log(playerGuess);
-    var countryNameBlanks = document.querySelector("#countryNameBlanks");
-    var lettersGuessedWrong = document.querySelector("#lettersGuessedWrong");
-    var guessesRemaining = document.querySelector("#guessesRemaining");
-    console.log(lettersGuessed);
-    for (var i = 0; i < randomCountry.length; i++) {
-      if (playerGuess == randomCountry[i]) {
-        blanks[i] = playerGuess;
-        countryNameBlanks.innerHTML = blanks.join("");
-      } else if (playerGuess != randomCountry[i]) {
-        if (lettersGuessed.indexOf(playerGuess) < 0) {
-          lettersGuessed.push(playerGuess);
-          console.log(lettersGuessed);
-          lettersGuessedWrong.innerHTML = lettersGuessed;
-        }
-      }
+  // Determines which key the player pressed - which guess they made - this becomes the playerGuess
+  var playerGuess = String.fromCharCode(event.keyCode).toLowerCase();
+  console.log(playerGuess);
+  var countryNameBlanks = document.querySelector("#countryNameBlanks");
+  var lettersGuessedWrong = document.querySelector("#lettersGuessedWrong");
+  var guessesRemaining = document.querySelector("#guessesRemaining");
+  var winsCounty = document.querySelector("#winsCount");
+  for (var i = 0; i < randomCountry.length; i++) {
+    if (playerGuess == randomCountry[i]) {
+      blanks[i] = playerGuess;
+      countryNameBlanks.innerHTML = blanks.join("");
+    }
+  };
+  if (blanks.indexOf(playerGuess) < 0) {
+    if (lettersGuessed.indexOf(playerGuess) < 0) {
+      lettersGuessed.push(" " + playerGuess);
+      console.log(lettersGuessed);
+      lettersGuessedWrong.innerHTML = lettersGuessed;
+      guesses --;
+      guessesRemaining.innerHTML = guesses;
     }
   }
+  if (blanks.join("") == randomCountry) {
+    wins ++;
+    winsCount.innerHTML = wins;
+  }
+}
+
+
+// for (var i = 0; i < randomCountry.length; i++) {
+//   switch (playerGuess == randomCountry[i]) {
+//     case true:
+//       blanks[i] = playerGuess;
+//       countryNameBlanks.innerHTML = blanks.join("");
+//       break;
+//     case false:
+//       if (lettersGuessed.indexOf(playerGuess) < 0) {
+//         if (blanks.indexOf(playerGuess) < 0) {
+//           lettersGuessed.push(playerGuess);
+//           console.log(lettersGuessed);
+//           lettersGuessedWrong.innerHTML = lettersGuessed;
+//           break;
+//         }
+//       }
+//   }
+// }
