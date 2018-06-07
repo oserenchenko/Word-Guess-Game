@@ -1,0 +1,22 @@
+body {
+  background-color: lightblue;
+}
+
+.container {
+  background-color: white;
+  background-image: url(../images/earth1.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 700px;
+  font-family: 'Crimson Text', serif;
+}
+
+h1,
+h2 {
+  font-family: 'Julius Sans One', sans-serif;
+}
+
+h1 {
+  font-size: 100px;
+}
