@@ -10,6 +10,7 @@ body {
   background-size: cover;
   height: 700px;
   font-family: 'Crimson Text', serif;
+  border: 5px solid gray;
 }
 
 h1,
@@ -19,4 +20,15 @@ h2 {
 
 h1 {
   font-size: 100px;
+}
+
+h3 {
+  font-size: 35px;
+}
+
+#countryMapOutline {
+  background-image: url(../images/globe.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }

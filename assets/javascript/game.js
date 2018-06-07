@@ -1,49 +1,63 @@
 //Array of country objects - the computer will randomly select one of these and the player will have to guess it
 countryArray = [{
-    "country": "argentina"
-    // "outline":
+    "country": "argentina",
+    "outline": "url('assets/images/argentina.png')"
   },
   {
-    "country": "bulgaria"
+    "country": "bulgaria",
+    "outline": "url('assets/images/bulgaria.png')"
   },
   {
-    "country": "denmark"
+    "country": "denmark",
+    "outline": "url('assets/images/denmark.png')"
   },
   {
-    "country": "ghana"
+    "country": "ghana",
+    "outline": "url('assets/images/ghana.png')"
   },
   {
-    "country": "honduras"
+    "country": "honduras",
+    "outline": "url('assets/images/honduras.png')"
   },
   {
-    "country": "israel"
+    "country": "israel",
+    "outline": "url('assets/images/israel.png')"
   },
   {
-    "country": "japan"
+    "country": "japan",
+    "outline": "url('assets/images/japan.png')"
   },
   {
-    "country": "mongolia"
+    "country": "mongolia",
+    "outline": "url('assets/images/mongolia.png')"
   },
   {
-    "country": "myanmar"
+    "country": "myanmar",
+    "outline": "url('assets/images/myanmar.png')"
   },
   {
-    "country": "philippines"
+    "country": "philippines",
+    "outline": "url('assets/images/philippines.png')"
   },
   {
-    "country": "spain"
+    "country": "spain",
+    "outline": "url('assets/images/spain.png')"
   },
   {
-    "country": "sweden"
+    "country": "sweden",
+    "outline": "url('assets/images/sweden.png')"
   },
   {
-    "country": "uganda"
+    "country": "uganda",
+    "outline": "url('assets/images/uganda.png')"
   },
   {
-    "country": "vietnam"
+    "country": "vietnam",
+    "outline": "url('assets/images/vietnam.png')"
   },
   {
     "country": "yemen",
+    "outline": "url('assets/images/yemen.png')"
   }
 ];
 
@@ -89,6 +103,7 @@ function gameSetUp() {
   //...run the chooseRandomWord function
   randomCountry = chooseRandomCountryReturns[0];
   countryOutline = chooseRandomCountryReturns[1];
+  console.log(typeof (countryOutline));
   //then run the blanksForCountry function
   blanks = blanksForCountry(randomCountry);
   lettersGuessed = [];
@@ -97,6 +112,7 @@ function gameSetUp() {
   lettersGuessedWrong.innerHTML = lettersGuessed.join("");
   var guessesRemaining = document.querySelector("#guessesRemaining");
   guessesRemaining.innerHTML = "Number of guesses remaining: " + guesses;
+  document.getElementById("countryMapOutline").style.backgroundImage = "url('assets/images/globe.png')";
   console.log(randomCountry);
 }
 
@@ -139,9 +155,8 @@ document.onkeyup = function () {
     wins++;
     winsCount.innerHTML = "Wins: " + wins;
     document.getElementById("countryMapOutline").style.backgroundImage = countryOutline;
-    gameSetUp();
+    setTimeout(function () {
+      gameSetUp();
+    }, 3000);
   }
 }
-
-//set time out
-// document.getElementById("country").style.backgroundImage = countryArray[i].outline;
