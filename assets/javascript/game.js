@@ -142,11 +142,14 @@ document.onkeyup = function () {
   var winsCount = document.querySelector("#winsCount");
   var lossesCount = document.querySelector("#lossesCount");
 
-  //for loop that checks the users guess against each character in the random country variable. If the player guess matches any of the characters in the country, the letter is displayed in the blanks array then updated in html
-  for (var i = 0; i < randomCountry.length; i++) {
-    if (playerGuess == randomCountry[i]) {
-      blanks[i] = playerGuess;
-      countryNameBlanks.innerHTML = blanks.join("");
+
+  if (gameReady) {
+    //for loop that checks the users guess against each character in the random country variable. If the player guess matches any of the characters in the country, the letter is displayed in the blanks array then updated in html
+    for (var i = 0; i < randomCountry.length; i++) {
+      if (playerGuess == randomCountry[i]) {
+        blanks[i] = playerGuess;
+        countryNameBlanks.innerHTML = blanks.join("");
+      }
     }
   };
 
