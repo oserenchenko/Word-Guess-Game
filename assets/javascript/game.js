@@ -175,11 +175,13 @@ document.onkeyup = function () {
 
   //if the player has run out of guesses
   if (guesses == 0) {
-    //and if the players guess is the last (minus a space) in the array (need this so that losses don't keep going up if the user continues to press keys)
-    if (lettersGuessed.indexOf(playerGuess) == lettersGuessed.length - 2) {
+    //if the game is ready
+    if (gameReady) {
       //adds a loss to the losses variable, show it in html, show the country the player did not guess in red, and show an image of loser 
       losses++;
       lossesCount.innerHTML = "Losses: " + losses;
+      //set the game ready variable to false -- so game does not keep going until it resets
+      gameReady = false;
       countryNameBlanks.innerHTML = randomCountry;
       countryNameBlanks.style.color = "red";
       countryNameBlanks.style.fontSize = "40px";
